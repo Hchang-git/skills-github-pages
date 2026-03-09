@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hchang-git's personal blog · 美化版</title>
+    <!-- 使用 Inter 字体（现代无衬线） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 免费图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 全局重置与变量 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f9fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ---------- 头部 ---------- */
+        .site-header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.8);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        /* 导航菜单（原汉堡菜单简化，因为只有一项） */
+        .site-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-link {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            background: #f1f5f9;
+        }
+
+        .page-link:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        /* 隐藏原始的汉堡菜单checkbox（用不上了） */
+        .nav-trigger, label[for="nav-trigger"] {
+            display: none;
+        }
+
+        /* ---------- 主要内容 ---------- */
+        .page-content {
+            flex: 1;
+            padding: 3rem 0;
+        }
+
+        /* 欢迎卡片 */
+        .welcome-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 30px -15px rgba(0, 70, 150, 0.15);
+            border: 1px solid rgba(59,130,246,0.1);
+        }
+
+        .welcome-card h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .welcome-card h1 i {
+            color: #3b82f6;
+            font-size: 2.2rem;
+        }
+
+        .welcome-card h1#my-name-is-chang {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-card p {
+            font-size: 1.2rem;
+            color: #334155;
+            max-width: 700px;
+        }
+
+        /* 文章列表区域 */
+        .posts-section {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -8px rgba(0,0,0,0.05);
+        }
+
+        .post-list-heading {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .post-list-heading i {
+            color: #3b82f6;
+        }
+
+        .post-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .post-list li {
+            background: #f8fafc;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .post-list li:hover {
+            background: white;
+            border-color: #3b82f6;
+            box-shadow: 0 8px 20px -10px rgba(59,130,246,0.3);
+            transform: translateY(-2px);
+        }
+
+        .post-meta {
+            color: #64748b;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .post-meta i {
+            font-size: 0.8rem;
+        }
+
+        .post-link {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+            text-decoration: none;
+            margin-left: 1rem;
+            flex: 1;
+        }
+
+        .post-link:hover {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        /* RSS 订阅 */
+        .rss-subscribe {
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .rss-subscribe a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #f97316;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .rss-subscribe a:hover {
+            background: #ea580c;
+        }
+
+        .rss-subscribe i {
+            font-size: 1rem;
+        }
+
+        /* ---------- 页脚 ---------- */
+        .site-footer {
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 2.5rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .footer-col-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .p-name {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .social-media-list {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-media-list a {
+            color: #64748b;
+            font-size: 1.4rem;
+            transition: color 0.2s;
+        }
+
+        .social-media-list a:hover {
+            color: #3b82f6;
+        }
+
+        .footer-col p {
+            color: #475569;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 640px) {
+            .welcome-card h1 {
+                font-size: 2rem;
+            }
+            .post-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .post-link {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header" role="banner">
+        <div class="wrapper header-inner">
+            <a class="site-title" rel="author" href="/skills-github-pages/">Hchang-git's personal blog</a>
+            <nav class="site-nav">
+                <!-- 原导航触发标签已用CSS隐藏，这里保留结构但视觉上只显示链接 -->
+                <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+                <label for="nav-trigger">
+                    <span class="menu-icon"><svg viewBox="0 0 18 15" width="18px" height="15px"><path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/></svg></span>
+                </label>
+                <div class="trigger">
+                    <a class="page-link" href="/skills-github-pages/"><i class="fas fa-smile" style="margin-right: 5px;"></i>Welcome to my blog! Ha!</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <!-- 原 .home 容器，重构为更漂亮的卡片布局 -->
+            <div class="home">
+                <!-- 欢迎卡片（合并了原有的两个标题和段落） -->
+                <div class="welcome-card">
+                    <h1><i class="fas fa-hand-wave"></i> Welcome to my blog! Ha!</h1>
+                    <h1 id="my-name-is-chang"><i class="fas fa-user-astronaut"></i> My name is Chang</h1>
+                    <p>nice to meet you. This is my first website. I am excited.</p>
+                </div>
+
+                <!-- 文章区域 -->
+                <section class="posts-section">
+                    <h2 class="post-list-heading"><i class="fas fa-feather"></i> Posts</h2>
+                    <ul class="post-list">
+                        <li>
+                            <span class="post-meta"><i class="far fa-calendar-alt"></i> Mar 6, 2026</span>
+                            <h3>
+                                <a class="post-link" href="/skills-github-pages/2026/03/06/Chang's-home.html">
+                                    Chang's-home
+                                </a>
+                            </h3>
+                        </li>
+                    </ul>
+
+                    <div class="rss-subscribe">
+                        <a href="/skills-github-pages/feed.xml"><i class="fas fa-rss"></i> subscribe via RSS</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer h-card">
+        <data class="u-url" href="/skills-github-pages/"></data>
+        <div class="wrapper">
+            <h2 class="footer-heading">Hchang-git's personal blog</h2>
+            <div class="footer-col-wrapper">
+                <div class="footer-col footer-col-1">
+                    <ul class="contact-list">
+                        <li class="p-name"><i class="fas fa-user" style="margin-right: 6px;"></i>Hchang-git</li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-col-2">
+                    <ul class="social-media-list">
+                        <!-- 您可以在下面添加真实社交链接，这里保留原结构但加入占位图标 -->
+                        <li><a href="#"><i class="fab fa-github"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-col-3">
+                    <p><i class="fas fa-quote-left" style="margin-right: 4px; color: #94a3b8;"></i>This is where I share cool stuff about my life</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
