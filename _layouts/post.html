@@ -1,0 +1,31 @@
+---
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 这里放入与主页相同的 <head> 内容（字体、图标、样式） -->
+    <link ...>
+    <style> /* 所有样式代码 */ </style>
+</head>
+<body>
+    {% include header.html %}  <!-- 如果有header包含文件，也可以用 -->
+    <!-- 或者直接复制头部HTML -->
+    <header class="site-header">...</header>
+
+    <main class="page-content">
+        <div class="wrapper">
+            <article class="post-card">
+                <h1 class="post-title">{{ page.title }}</h1>
+                <div class="post-meta">
+                    <i class="far fa-calendar-alt"></i> {{ page.date | date: "%b %d, %Y" }}
+                </div>
+                <div class="post-content">
+                    {{ content }}
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">...</footer>
+</body>
+</html>
