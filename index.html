@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 移动端适配核心标签 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chang's Blog</title>
+    <!-- 引入谷歌无衬线字体，提升可读性 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* 全局样式重置，消除浏览器默认边距/样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        /* 全局背景+文字颜色，可直接修改配色 */
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 0 1rem;
+            animation: pageFade 0.8s ease-in-out; /* 页面淡入动画 */
+        }
+        /* 页面容器，限制最大宽度+居中，适配大尺寸屏幕 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+        /* 头部欢迎区样式 */
+        .header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .header .greeting {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+        .header .name {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #2563eb; /* 主色调，可修改 */
+            margin-bottom: 1rem;
+        }
+        .header .desc {
+            font-size: 1.1rem;
+            color: #475569;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        /* 帖子板块标题 */
+        .posts-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0; /* 下划线分隔 */
+        }
+        /* 帖子卡片样式 */
+        .post-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px; /* 圆角 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* 轻阴影 */
+            transition: all 0.3s ease; /* 过渡动效 */
+            cursor: pointer;
+        }
+        /* 帖子卡片hover效果 */
+        .post-card:hover {
+            box-shadow: 0 4px 16px rgba(37,99,235,0.1);
+            transform: translateY(-2px); /* 轻微上移 */
+        }
+        .post-card .post-date {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 0.8rem;
+        }
+        .post-card .post-name {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2563eb;
+        }
+        /* 页脚样式，保留版权+简约风格 */
+        .footer {
+            margin-top: 6rem;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        /* 页面淡入动画关键帧 */
+        @keyframes pageFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 移动端适配，屏幕小于768px时生效 */
+        @media (max-width: 768px) {
+            .container { padding: 2rem 0; }
+            .header .name { font-size: 2.2rem; }
+            .posts-title { font-size: 1.5rem; }
+            .post-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部欢迎区：保留原网站所有欢迎语 -->
+        <header class="header">
+            <p class="greeting">Welcome to my blog! Ha!</p>
+            <h1 class="name">Chang</h1>
+            <p class="desc">nice to meet you. This is my first website. I am excited.</p>
+        </header>
+
+        <!-- 帖子列表区：保留原网站的Posts/日期/帖子名 -->
+        <main>
+            <h2 class="posts-title">Posts</h2>
+            <div class="post-card">
+                <p class="post-date">Mar 6, 2026</p>
+                <h3 class="post-name">Chang's-home</h3>
+            </div>
+        </main>
+
+        <!-- 页脚：简约版权，可后续修改 -->
+        <footer class="footer">
+            <p>© 2026 Chang's Blog | My First Website</p>
+        </footer>
+    </div>
+</body>
+</html>
